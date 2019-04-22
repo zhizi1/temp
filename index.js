@@ -1,9 +1,8 @@
-const http = require('http')
-const app = http.createServer((req, res) => {
-res.end('hello, world')
-})
+let express = require('express');
+let app = express();
 
-app.listen('80', () => {
-
-console.log('the serve is running 80 port')
-})
+app.get('/say', (req, res) => {
+    let {cb} = req.query; //获取传来的callback函数名，cb是key
+    res.send(`${cb}('Hello!')`);
+});
+app.listen(3000);
